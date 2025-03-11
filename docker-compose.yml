@@ -6,6 +6,12 @@ services:
       POSTGRES_PASSWORD: 'postgres'
     volumes:
       - db:/var/lib/postgresql/data
+  elasticsearch:
+    image: docker.io/bitnami/elasticsearch:8
+    ports:
+      - '9200:9200'
+    volumes:
+      - elastic_lib:/usr/share/elasticsearch7/data
   web:
     tty: true
     stdin_open: true
@@ -27,11 +33,14 @@ services:
       - "8080:3000"
     depends_on:
       - db
+      - elasticsearch
     environment:
       RAILS_LOG_TO_STDOUT: 'yes'
       PAGER: 'more'
       POSTGRES_HOST: 'db'
       POSTGRES_USER: 'postgres'
       POSTGRES_PASSWORD: 'postgres'
+
 volumes:
   db:
+  elastic_lib:

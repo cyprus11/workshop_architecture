@@ -11,4 +11,12 @@ class ApplicationController < ActionController::Base
     end
     serializer.new(obj).serialize
   end
+
+  def per_page
+    ::Settings.app.items_per_page
+  end
+
+  def page
+    [ params[:page].to_i, 0 ].max
+  end
 end
