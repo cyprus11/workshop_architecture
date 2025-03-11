@@ -35,6 +35,9 @@ gem 'alba'
 # elasticsearch
 gem 'chewy'
 
+# kafka
+gem 'karafka'
+
 group :development, :test do
   gem 'bundler-audit'
   gem 'capybara'
